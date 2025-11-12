@@ -1,7 +1,7 @@
 import * as Haptics from "expo-haptics";
 import React, { useEffect, useRef } from "react";
 import { Animated, Text, TouchableOpacity } from "react-native";
-export default function Button({ text, onPress }) {
+export default function Button({ text = "", onPress = () => {} }) {
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const rotateAnim = useRef(new Animated.Value(0)).current;
 

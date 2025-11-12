@@ -45,7 +45,7 @@ const AnimatedInput: React.FC<AnimatedInputProps> = ({
         <AnimatedTextInput
             {...props}
             style={animatedStyle}
-            className={`border p-3 rounded-2xl w-full py-5 ${className}`}
+            className={`border p-3 rounded-2xl w-full py-6 text-lg pl-[1.06rem] font-bold ${className}`}
             placeholder={placeholder}
             placeholderTextColor={placeholderTextColor}
             keyboardType={keyboardType}
