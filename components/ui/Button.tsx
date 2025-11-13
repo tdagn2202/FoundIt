@@ -54,7 +54,7 @@ export default function Button({ text = "", onPress = () => {} }) {
         className="bg-[#5250E1] px-8 py-3"
         style={{
           borderRadius: 9,
-          shadowColor: "rgba(82, 80, 225, 0.66)",
+          shadowColor: "rgba(82, 80, 225, 0.45)",
           shadowOffset: { width: -1, height: 6 },
           shadowOpacity: 1,
           shadowRadius: 49.5,

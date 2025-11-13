@@ -41,7 +41,7 @@ const Login = () => {
                 <View className="w-full">
                     <Text className="text-right text-lg text-[#5250E1] font-bold">Forgot password?</Text>
                 </View>
-                <RoundedButton text={"Login"} onPress={() => {}}/>
+                <RoundedButton text={"Login"} onPress={() => {navigation.replace("/(app)")}}/>
 
             </View>
 
