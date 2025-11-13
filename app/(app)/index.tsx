@@ -12,9 +12,9 @@ const sampleData = [
         timeAgo: "55 minutes ago",
         description: "Mình bị mất nếtt, mọi người tìm giúp mình với a",
         type: "Card",
-        building: "DI",
-        room: "201",
-        cardImage: "https://i.pinimg.com/736x/fd/42/d2/fd42d22f09949d3992b2b5e6edec2a12.jpg"
+        building: "ATL",
+        room: "303",
+        images: ["https://i.pinimg.com/736x/fd/42/d2/fd42d22f09949d3992b2b5e6edec2a12.jpg"]
     },
     {
         userAvatar: "https://i.pravatar.cc/150?img=2",
@@ -24,7 +24,11 @@ const sampleData = [
         type: "Card",
         building: "DI",
         room: "201",
-        cardImage: "https://i.pinimg.com/736x/fd/42/d2/fd42d22f09949d3992b2b5e6edec2a12.jpg"
+        images: [
+            "https://picsum.photos/400/600",
+            "https://picsum.photos/400/601",
+            "https://picsum.photos/400/602"
+        ]
     },
     {
         userAvatar: "https://i.pravatar.cc/150?img=2",
@@ -34,7 +38,13 @@ const sampleData = [
         type: "Card",
         building: "DI",
         room: "201",
-        cardImage: "https://i.pinimg.com/736x/fd/42/d2/fd42d22f09949d3992b2b5e6edec2a12.jpg"
+        images: [
+            "https://picsum.photos/400/600",
+            "https://picsum.photos/400/601",
+            "https://picsum.photos/400/602",
+            "https://picsum.photos/400/602",
+            "https://picsum.photos/400/602"
+        ]
     },
     // More items...
 ];

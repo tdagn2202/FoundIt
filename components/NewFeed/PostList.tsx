@@ -2,6 +2,18 @@ import {Image, Text, TouchableOpacity, View} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import Button from "@/components/UI/Button";
 
+
+interface PostData {
+    userAvatar: string;
+    title: string;
+    timeAgo: string;
+    description: string;
+    type: string;
+    building: string;
+    room: string;
+    images: string[];
+}
+
 interface PostListProps {
     data: any[]
 }
@@ -9,6 +21,100 @@ interface PostListProps {
 interface PostListItemProps {
     data: any
 }
+
+const ImageGallery = ({ images }: { images: string[] }) => {
+    const imageCount = images.length;
+
+    // 1 image - Full width
+    if (imageCount === 1) {
+        return (
+            <Image
+                source={{ uri: images[0] }}
+                className="w-full h-72 rounded-2xl"
+                resizeMode="cover"
+            />
+        );
+    }
+
+    // 2 images - Side by side
+    if (imageCount === 2) {
+        return (
+            <View className="flex-row gap-2">
+                {images.slice(0, 2).map((img, idx) => (
+                    <Image
+                        key={idx}
+                        source={{ uri: img }}
+                        className="flex-1 h-48 rounded-2xl"
+                        resizeMode="cover"
+                    />
+                ))}
+            </View>
+        );
+    }
+
+    // 3 images - First image takes left half, two images stacked on right
+    if (imageCount === 3) {
+        return (
+            <View className="flex-row gap-2 h-72">
+                <Image
+                    source={{ uri: images[0] }}
+                    className="flex-1 rounded-2xl"
+                    resizeMode="cover"
+                />
+                <View className="flex-1 gap-2">
+                    <Image
+                        source={{ uri: images[1] }}
+                        className="flex-1 rounded-2xl"
+                        resizeMode="cover"
+                    />
+                    <Image
+                        source={{ uri: images[2] }}
+                        className="flex-1 rounded-2xl"
+                        resizeMode="cover"
+                    />
+                </View>
+            </View>
+        );
+    }
+
+    // 4+ images - 2x2 grid, last image with overlay if more than 4
+    const remainingCount = imageCount - 4;
+    const displayImages = images.slice(0, 4);
+
+    return (
+        <View className="gap-2">
+            <View className="flex-row gap-2">
+                {displayImages.slice(0, 2).map((img, idx) => (
+                    <Image
+                        key={idx}
+                        source={{ uri: img }}
+                        className="flex-1 h-36 rounded-2xl"
+                        resizeMode="cover"
+                    />
+                ))}
+            </View>
+            <View className="flex-row gap-2">
+                {displayImages.slice(2, 4).map((img, idx) => (
+                    <View key={idx} className="flex-1 relative">
+                        <Image
+                            source={{ uri: img }}
+                            className="w-full h-36 rounded-2xl"
+                            resizeMode="cover"
+                        />
+                        {/* Overlay for last image if more than 4 images */}
+                        {idx === 1 && remainingCount > 0 && (
+                            <View className="absolute inset-0 bg-black/60 rounded-2xl items-center justify-center">
+                                <Text className="text-white text-3xl font-bold">
+                                    +{remainingCount}
+                                </Text>
+                            </View>
+                        )}
+                    </View>
+                ))}
+            </View>
+        </View>
+    );
+};
 
 
 const PostListItem: React.FC<PostListItemProps> = ({ data }) => {
@@ -68,12 +174,11 @@ const PostListItem: React.FC<PostListItemProps> = ({ data }) => {
                 </View>
             </View>
 
-            {/* Student Card Image */}
-            <Image
-                source={{ uri: data.cardImage }}
-                className="w-full h-72 rounded-2xl mb-4"
-                resizeMode="contain"
-            />
+            {/* Image Gallery */}
+            <View className="mb-4">
+                <ImageGallery images={data.images} />
+            </View>
+
 
             {/* Action Button */}
             <Button text={"Got you, get in touch!"}/>
