@@ -42,7 +42,7 @@ const CategoryList = () => {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{
                 paddingHorizontal: 16,
-                paddingVertical: 8,
+
                 alignItems: "center",
             }}
             className="overflow-visible pl-1"

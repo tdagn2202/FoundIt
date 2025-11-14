@@ -1,8 +1,10 @@
 import {Image, Text, View} from "react-native";
 import {useEffect, useState} from "react";
+import HorizontalCategory from "@/components/Shared/HorizontalCategory";
 
 interface GreetingHeaderProps {
-    screenTitle: string
+    screenTitle: string,
+    subTitle: string,
 }
 
 interface UserData {
@@ -10,8 +12,10 @@ interface UserData {
     avatar: string;
 }
 
-const GreetingHeader = ({ screenTitle } : GreetingHeaderProps) => {
+const GreetingHeader = ({ screenTitle, subTitle="" } : GreetingHeaderProps) => {
     const [userData, setUserData] = useState<UserData | undefined>();
+
+
     useEffect(() => {
         const getUser = async () => {
             setUserData({
@@ -20,15 +24,16 @@ const GreetingHeader = ({ screenTitle } : GreetingHeaderProps) => {
             })
         }
 
-        getUser()
+        void getUser()
     }, [])
 
 
     return (
-        <View className="flex-row items-center justify-between px-4 py-3 bg-white pl-5">
+        <View className="flex-row items-center justify-between pt-3 pl-2">
             {/* Left side - Avatar and Greeting */}
             <View className="flex-1">
                 <Text className="text-4xl font-bold">{screenTitle}</Text>
+                <Text className="text-lg text-gray-500">{subTitle}</Text>
             </View>
             <View className="flex-row items-center">
                 <Image

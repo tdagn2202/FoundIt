@@ -1,9 +1,11 @@
-import {Image, ScrollView, Text, TouchableOpacity, View} from "react-native";
-import {SafeAreaView, useSafeAreaInsets} from "react-native-safe-area-context";
-import {Ionicons} from '@expo/vector-icons';
+import {ScrollView, Text, View} from "react-native";
 import GreetingHeader from "@/components/Shared/Header";
+import {SafeAreaView, useSafeAreaInsets} from "react-native-safe-area-context";
+import AnimatedInput from "@/components/UI/AnimatedInput";
+import {Stack} from "expo-router";
 import HorizontalCategory from "@/components/Shared/HorizontalCategory";
-import PostList from "@/components/NewFeed/PostList"; // Add this import
+import PostList from "@/components/NewFeed/PostList";
+
 
 const sampleData = [
     {
@@ -49,28 +51,25 @@ const sampleData = [
     // More items...
 ];
 
-
-const Index = () => {
+const FoundPage = () => {
     const insets = useSafeAreaInsets();
-
     return (
         <SafeAreaView className=" bg-white">
             <GreetingHeader
-                screenTitle={"New feed"}
-            />
+                screenTitle={"Found things"} subTitle={"Waiting for the owner"}/>
 
             <View className="overflow-visible">
-                <HorizontalCategory />
+                <HorizontalCategory/>
             </View>
 
             <ScrollView className=" h-auto mt-5 pl-0 pt-3" showsVerticalScrollIndicator={false} contentContainerStyle={{
-                paddingBottom: insets.bottom+140
+                paddingBottom: insets.bottom + 140
             }}>
-                <PostList data={sampleData} />
+                <PostList data={sampleData}/>
             </ScrollView>
 
         </SafeAreaView>
     )
 }
 
-export default Index
+export default FoundPage

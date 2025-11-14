@@ -1,80 +1,24 @@
-import { Tabs } from 'expo-router';
-import { Badge, Icon, Label, NativeTabs } from 'expo-router/unstable-native-tabs';
-
-import { Ionicons } from '@expo/vector-icons';
-import {Text} from "react-native";
+import {Badge, Icon, Label, NativeTabs} from 'expo-router/unstable-native-tabs';
 
 export default function AppLayout() {
     return (
-        <NativeTabs>
-            <NativeTabs.Trigger name = "index">
-                <Label>New feed</Label>
+        <NativeTabs minimizeBehavior="onScrollDown">
+            <NativeTabs.Trigger name="(lost)">
+                <Label>Lost</Label>
                 <Icon sf={"magnifyingglass"} drawable="ic_menu_mylocation" selectedColor="#5250e1"/>
             </NativeTabs.Trigger>
-            <NativeTabs.Trigger name = "CreatePost">
-                <Label>New post</Label>
+            <NativeTabs.Trigger name="(found)">
+                <Label>Found</Label>
                 <Icon sf={"arrow.2.squarepath"} selectedColor="#5250e1"/>
             </NativeTabs.Trigger>
-            <NativeTabs.Trigger name = "ChatScreen">
+            <NativeTabs.Trigger name="(chat)">
                 <Label>Chat</Label>
                 <Icon sf={"captions.bubble"} selectedColor="#5250e1"/>
             </NativeTabs.Trigger>
-            <NativeTabs.Trigger name = "ProfileScreen">
+            <NativeTabs.Trigger name="(profile)">
                 <Label>Profile</Label>
-                <Icon sf = {"person"} selectedColor="#5250e1"/>
+                <Icon sf={"person"} selectedColor="#5250e1"/>
             </NativeTabs.Trigger>
         </NativeTabs>
-        // <Tabs
-        //     screenOptions={{
-        //         tabBarActiveTintColor: '#5250e1',
-        //         tabBarInactiveTintColor: '#8e9093',
-        //         tabBarStyle: {
-        //             backgroundColor: '#ffffff',
-        //             borderTopWidth: 1,
-        //             borderTopColor: '#e5e7eb',
-        //             height: 60,
-        //             paddingBottom: 8,
-        //             paddingTop: 8,
-        //         },
-        //         headerShown: false,
-        //     }}
-        // >
-        //     <Tabs.Screen
-        //         name="index"
-        //         options={{
-        //             title: 'Feed',
-        //             tabBarIcon: ({ color, size }) => (
-        //                 <Ionicons name="newspaper" size={size} color={color} />
-        //             ),
-        //         }}
-        //     />
-        //     <Tabs.Screen
-        //         name="ChatScreen"
-        //         options={{
-        //             title: 'Chat',
-        //             tabBarIcon: ({ color, size }) => (
-        //                 <Ionicons name="chatbubble" size={size} color={color} />
-        //             ),
-        //         }}
-        //     />
-        //     <Tabs.Screen
-        //         name="ProfileScreen"
-        //         options={{
-        //             title: 'Profile',
-        //             tabBarIcon: ({ color, size }) => (
-        //                 <Ionicons name="person" size={size} color={color} />
-        //             ),
-        //         }}
-        //     />
-        //     <Tabs.Screen
-        //         name="ThankScreen"
-        //         options={{
-        //             title: 'Thanks',
-        //             tabBarIcon: ({ color, size }) => (
-        //                 <Ionicons name="heart" size={size} color={color} />
-        //             ),
-        //         }}
-        //     />
-        // </Tabs>
     );
 }

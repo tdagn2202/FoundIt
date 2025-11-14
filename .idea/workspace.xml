@@ -5,9 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95b0099a-d98e-49b9-a3ae-42e2fb384ccd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/(app)/(chat)/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/(chat)/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/(found)/[id].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/(found)/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/(found)/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/(lost)/[id].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/(lost)/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/(lost)/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/(profile)/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/(profile)/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/.old/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/FoundPage.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/CreatePost.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(app)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/NewFeed/PostList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewFeed/PostList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Shared/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Shared/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Shared/HorizontalCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Shared/HorizontalCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ui/AnimatedInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/AnimatedInput.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,27 +52,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/CODE/FoundIt&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\CODE\\FoundIt\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultAutoModeForALLUsers.v1": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "D:/CODE/FoundIt/app/(app)/.old",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "D:\\CODE\\FoundIt\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\CODE\FoundIt\app\(app)\.old" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\CODE\FoundIt\app\(app)" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -74,12 +98,20 @@
       <workItem from="1762843855232" duration="34000" />
       <workItem from="1762843893264" duration="1027000" />
       <workItem from="1762932467050" duration="16192000" />
-      <workItem from="1763015423870" duration="8385000" />
+      <workItem from="1763015423870" duration="9918000" />
+      <workItem from="1763090318692" duration="4486000" />
+      <workItem from="1763095529514" duration="8785000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="dependencySupport" implementationName="javascript:npm:react" />
+    <option featureType="dependencySupport" implementationName="executable:docker" />
+    <option featureType="dependencySupport" implementationName="javascript:npm:tailwindcss" />
+    <option featureType="dependencySupport" implementationName="executable:kubectl" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
