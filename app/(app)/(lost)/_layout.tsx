@@ -12,8 +12,7 @@ export default function LostLayout() {
                     headerTitle: () => {
                         return <GreetingHeader
                             screenTitle="Lost things"
-                            subTitle="Still not found the owner yet"
-                        />
+                            subTitle="Still not found the owner yet" className={""}                        />
                     },
                     headerTransparent: true
                 }}

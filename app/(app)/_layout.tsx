@@ -1,8 +1,9 @@
 import {Badge, Icon, Label, NativeTabs} from 'expo-router/unstable-native-tabs';
 
 export default function AppLayout() {
+
     return (
-        <NativeTabs minimizeBehavior="onScrollDown">
+        <NativeTabs minimizeBehavior="automatic">
             <NativeTabs.Trigger name="(lost)">
                 <Label>Lost</Label>
                 <Icon sf={"magnifyingglass"} drawable="ic_menu_mylocation" selectedColor="#5250e1"/>
@@ -11,13 +12,17 @@ export default function AppLayout() {
                 <Label>Found</Label>
                 <Icon sf={"arrow.2.squarepath"} selectedColor="#5250e1"/>
             </NativeTabs.Trigger>
-            <NativeTabs.Trigger name="(chat)">
+            <NativeTabs.Trigger name="(chat)" >
                 <Label>Chat</Label>
                 <Icon sf={"captions.bubble"} selectedColor="#5250e1"/>
             </NativeTabs.Trigger>
             <NativeTabs.Trigger name="(profile)">
                 <Label>Profile</Label>
                 <Icon sf={"person"} selectedColor="#5250e1"/>
+            </NativeTabs.Trigger>
+            <NativeTabs.Trigger name="(new_post)" role={"search"}>
+                <Label>Profile</Label>
+                <Icon sf={"plus.app"} selectedColor="#5250e1"/>
             </NativeTabs.Trigger>
         </NativeTabs>
     );

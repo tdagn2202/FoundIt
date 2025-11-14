@@ -1,9 +1,9 @@
 import {Image, ScrollView, Text, TouchableOpacity, View} from "react-native";
 import {SafeAreaView, useSafeAreaInsets} from "react-native-safe-area-context";
-import {Ionicons} from '@expo/vector-icons';
-import GreetingHeader from "@/components/Shared/Header";
 import HorizontalCategory from "@/components/Shared/HorizontalCategory";
-import PostList from "@/components/NewFeed/PostList"; // Add this import
+import PostList from "@/components/NewFeed/PostList";
+import {NativeTabs} from "expo-router/unstable-native-tabs";
+import {useRef} from "react"; // Add this import
 
 const sampleData = [
     {
@@ -52,6 +52,7 @@ const sampleData = [
 
 const Index = () => {
     const insets = useSafeAreaInsets();
+    const scrollRef = useRef<ScrollView>(null);
 
     return (
         <View className="bg-white flex-1" style={{ paddingTop: insets.top+70 }}>
@@ -60,6 +61,7 @@ const Index = () => {
             </View>
 
             <ScrollView
+                ref={scrollRef}
                 className="h-auto mt-5 pl-0 pt-3"
                 showsVerticalScrollIndicator={false}
                 contentContainerStyle={{

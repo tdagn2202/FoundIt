@@ -5,6 +5,7 @@ import HorizontalCategory from "@/components/Shared/HorizontalCategory";
 interface GreetingHeaderProps {
     screenTitle: string,
     subTitle: string,
+    className: string
 }
 
 interface UserData {
@@ -12,7 +13,7 @@ interface UserData {
     avatar: string;
 }
 
-const GreetingHeader = ({ screenTitle, subTitle="" } : GreetingHeaderProps) => {
+const GreetingHeader = ({ screenTitle, subTitle="", className } : GreetingHeaderProps) => {
     const [userData, setUserData] = useState<UserData | undefined>();
 
 
@@ -29,7 +30,7 @@ const GreetingHeader = ({ screenTitle, subTitle="" } : GreetingHeaderProps) => {
 
 
     return (
-        <View className="flex-row items-center justify-between pt-3 pl-2">
+        <View className={`flex-row items-center justify-between pt-3 pl-2 ${className}`}>
             {/* Left side - Avatar and Greeting */}
             <View className="flex-1">
                 <Text className="text-4xl font-bold">{screenTitle}</Text>
