@@ -2,10 +2,12 @@ import {Image, ScrollView, Text, TextInput, TouchableOpacity, View} from "react-
 import {StatusBar} from "expo-status-bar";
 import {useCallback, useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
-import {useFocusEffect, useNavigation} from "expo-router";
+import {router, useFocusEffect, useNavigation, useRouter} from "expo-router";
 import {useSearch} from "@/Contexts/SearchContext";
+import {useChat} from "@/Contexts/ChatContext";
 
 const ChatScreen = () => {
+    const navigation = useRouter();
     const [chats, setChats] = useState([
         {
             id: 1,
@@ -64,7 +66,9 @@ const ChatScreen = () => {
             online: false
         }
     ]);
-    const { searchQuery } = useSearch();
+    const {searchQuery} = useSearch();
+    const { setSelectedChat } = useChat();
+
 
     const filteredChats = chats.filter(chat =>
         chat.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -72,9 +76,7 @@ const ChatScreen = () => {
 
     return (
         <SafeAreaView className="flex-1 bg-gray-50 pt-[3rem]">
-
-            <StatusBar style={"dark"} />
-
+            <StatusBar style={"dark"}/>
             {/* Header */}
             <View className=" px-4 pb-4">
             </View>
@@ -86,19 +88,24 @@ const ChatScreen = () => {
                         key={chat.id}
                         className=""
                         activeOpacity={0.7}
+                        onPress={() => {
+                            setSelectedChat(chat)
+                            router.push(`/(app)/chat/${chat.id}`);
+                        }}
                     >
                         <View className="flex-row p-4 justify-center">
                             {/* Avatar */}
                             <View className="relative mr-3  justify-center ">
                                 <View className="w-14 h-14 rounded-full bg-blue-500 items-center justify-center">
                                     <Image
-                                        source={{ uri: chat.avatar }}
+                                        source={{uri: chat.avatar}}
                                         className="w-14 h-14 rounded-full"
                                         resizeMode="cover" // Ensure the image doesn't stretch
                                     />
                                 </View>
                                 {chat.online && (
-                                    <View className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-green-500 border-2 border-white" />
+                                    <View
+                                        className="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-green-500 border-2 border-white"/>
                                 )}
                             </View>
 
@@ -115,7 +122,8 @@ const ChatScreen = () => {
                                         {chat.lastMessage}
                                     </Text>
                                     {chat.unread > 0 && (
-                                        <View className="bg-blue-500 rounded-full min-w-[20px] h-5 items-center justify-center px-1.5">
+                                        <View
+                                            className="bg-blue-500 rounded-full min-w-[20px] h-5 items-center justify-center px-1.5">
                                             <Text className="text-white text-xs font-bold">{chat.unread}</Text>
                                         </View>
                                     )}

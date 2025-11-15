@@ -12,7 +12,7 @@ export default function AppLayout() {
                 <Label>Found</Label>
                 <Icon sf={"arrow.2.squarepath"} selectedColor="#5250e1"/>
             </NativeTabs.Trigger>
-            <NativeTabs.Trigger name="(chat)" >
+            <NativeTabs.Trigger name="chat" >
                 <Label>Chat</Label>
                 <Icon sf={"captions.bubble"} selectedColor="#5250e1"/>
             </NativeTabs.Trigger>

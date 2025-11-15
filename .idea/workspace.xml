@@ -5,22 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95b0099a-d98e-49b9-a3ae-42e2fb384ccd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Contexts/SearchContext.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(app)/(new_post)/_layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(app)/(new_post)/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Contexts/ChatContext.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(app)/chat/[id].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Shared/ChatHeader.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/(chat)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(chat)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/(chat)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(chat)/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/(lost)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(lost)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/(lost)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(lost)/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/.old/ChatScreen.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/.old/FoundPage.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/.old/ProfileScreen.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/.old/_layout.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/.old/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/(chat)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/chat/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/(chat)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/chat/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(app)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(auth)/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Shared/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Shared/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -101,7 +94,9 @@
       <workItem from="1763015423870" duration="9918000" />
       <workItem from="1763090318692" duration="4486000" />
       <workItem from="1763095529514" duration="10597000" />
-      <workItem from="1763129100406" duration="8889000" />
+      <workItem from="1763129100406" duration="9161000" />
+      <workItem from="1763165903544" duration="8069000" />
+      <workItem from="1763191098469" duration="1550000" />
     </task>
     <servers />
   </component>
