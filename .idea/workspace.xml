@@ -5,15 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95b0099a-d98e-49b9-a3ae-42e2fb384ccd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Contexts/ChatContext.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(app)/chat/[id].tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Shared/ChatHeader.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(new_post_stepper)/Step2.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(new_post_stepper)/Step3.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(new_post_stepper)/_layout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(new_post_stepper)/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/NewPost/NearByFoundModal.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/AnimatedDateTimePicker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/AnimatedDropdown.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/AnimatedImagePicker.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/ui/AnimatedPhoneInput.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/(chat)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/chat/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/(chat)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/chat/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contexts/ChatContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Contexts/ChatContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/(found)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(found)/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/(new_post)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(new_post)/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(app)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(auth)/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/chat/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/chat/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/chat/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/chat/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -33,7 +40,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -70,8 +77,9 @@
       <recent name="D:\CODE\FoundIt\app\(app)\.old" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\CODE\FoundIt\app\(app)\.old" />
       <recent name="D:\CODE\FoundIt\app\(app)" />
+      <recent name="D:\CODE\FoundIt\app" />
+      <recent name="D:\CODE\FoundIt\app\(app)\.old" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -96,7 +104,8 @@
       <workItem from="1763095529514" duration="10597000" />
       <workItem from="1763129100406" duration="9161000" />
       <workItem from="1763165903544" duration="8069000" />
-      <workItem from="1763191098469" duration="1550000" />
+      <workItem from="1763191098469" duration="15712000" />
+      <workItem from="1763258339966" duration="16373000" />
     </task>
     <servers />
   </component>

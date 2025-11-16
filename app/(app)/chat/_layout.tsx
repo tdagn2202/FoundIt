@@ -1,15 +1,17 @@
 import {Stack} from 'expo-router';
+import {useRef} from 'react';
 import GreetingHeader from "@/components/Shared/Header";
-import {NativeTabs} from "expo-router/unstable-native-tabs";
-import {Image, Text, View} from "react-native";
 import {useSearch} from "@/Contexts/SearchContext";
 import {useChat} from "@/Contexts/ChatContext";
-import {Header} from "@react-navigation/elements";
 import ChatHeader from "@/components/Shared/ChatHeader";
+// @ts-ignore
+import {SearchBarCommands} from '@react-navigation/elements';
 
 export default function ChatLayout() {
     const {setSearchQuery} = useSearch()
-    const {selectedChat} = useChat()
+    const {selectedChat, sendMessage, inputText, setInputText} = useChat()
+    const searchBarRef = useRef<SearchBarCommands>(null);
+
     return (
         <>
             <Stack>
@@ -40,23 +42,35 @@ export default function ChatLayout() {
                     name="[id]"
                     options={{
                         headerShown: true,
+                        navigationBarHidden: true,
                         title: selectedChat?.name,
                         headerTitle: () => {
                             return (
                                 <ChatHeader
-                                    className={"pt-7 overflow-visible h-[7rem] w-[85%] pr-5"}
+                                    className={"pt-7 overflow-visible h-[7rem] w-[85%]"}
                                 />
                             )
                         },
                         headerSearchBarOptions: {
-                            placement: 'integratedButton',
-                            placeholder: 'Search',
+                            ref: searchBarRef,
+                            placement: 'inline',
+                            placeholder: 'Enter message',
+
+                            hideNavigationBar: false,
+
                             onChangeText: (e) => {
-                                setSearchQuery(e.nativeEvent.text);
+                                setInputText(e.nativeEvent.text);
+                            },
+                            onSearchButtonPress: () => {
+                                sendMessage(inputText);
+
+                                setInputText('');
+                                searchBarRef.current?.clearText();
+                                searchBarRef.current.cancelSearch();
                             },
                         },
-                        headerTransparent: true
-
+                        headerTransparent: true,
+                        presentation: 'modal'
                     }}
                 >
                 </Stack.Screen>

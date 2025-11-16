@@ -12,7 +12,7 @@ export default function FoundLayout() {
                     headerTitle: () => {
                         return <GreetingHeader
                             screenTitle="Found Things"
-                            subTitle="Waiting for the owner"
+                            subTitle="Waiting for the owner" className={""}
                         />
                     },
                     headerTransparent: true
