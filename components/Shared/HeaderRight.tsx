@@ -1,19 +1,14 @@
-import {Image, Text, View} from "react-native";
+import {Image, Text, TouchableOpacity, View} from "react-native";
 import {useEffect, useState} from "react";
-import HorizontalCategory from "@/components/Shared/HorizontalCategory";
-
-interface GreetingHeaderProps {
-    screenTitle: string,
-    subTitle: string,
-    className: string
-}
+import {useRouter} from "expo-router";
 
 interface UserData {
     name: string;
     avatar: string;
 }
 
-const GreetingHeader = ({ screenTitle, subTitle="", className } : GreetingHeaderProps) => {
+const HeaderRight = () => {
+    const router = useRouter();
     const [userData, setUserData] = useState<UserData | undefined>();
 
 
@@ -27,18 +22,18 @@ const GreetingHeader = ({ screenTitle, subTitle="", className } : GreetingHeader
 
         void getUser()
     }, [])
-
-
     return (
-        <View className={`flex-row items-start justify-start pt-3 pl-2  ${className}`}>
-            {/* Left side - Avatar and Greeting */}
-            <View className="">
-                <Text className="text-4xl font-bold">{screenTitle}</Text>
-                <Text className="text-lg text-gray-500">{subTitle}</Text>
-            </View>
+        <TouchableOpacity onPress={() => router.push("/(app)/(profile)")}>
 
-        </View>
-    );
+            <View className={"flex-row-reverse gap-2 items-center"}>
+                <Text className="font-bold text-lg pr-2">Hai Dang</Text>
+                <Image
+                    source={{uri: userData?.avatar}}
+                    className="w-10 h-10 rounded-full" // Removed pr-20
+                />
+            </View>
+        </TouchableOpacity>
+    )
 }
 
-export default GreetingHeader
+export default HeaderRight;

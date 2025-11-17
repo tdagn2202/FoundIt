@@ -1,5 +1,7 @@
 import { Stack } from 'expo-router';
 import GreetingHeader from "@/components/Shared/Header";
+import {Image, Text, View} from "react-native";
+import HeaderRight from "@/components/Shared/HeaderRight";
 
 export default function FoundLayout() {
     return (
@@ -15,7 +17,8 @@ export default function FoundLayout() {
                             subTitle="Waiting for the owner" className={""}
                         />
                     },
-                    headerTransparent: true
+                    headerTransparent: true,
+                    headerRight: () => <HeaderRight/>
                 }}
             />
             <Stack.Screen

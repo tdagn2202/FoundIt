@@ -1,5 +1,7 @@
 import { Stack } from 'expo-router';
 import GreetingHeader from "@/components/Shared/Header";
+import {Image, Text, View} from "react-native";
+import HeaderRight from "@/components/Shared/HeaderRight";
 
 export default function LostLayout() {
     return (
@@ -14,7 +16,8 @@ export default function LostLayout() {
                             screenTitle="Lost things"
                             subTitle="Still not found the owner yet" className={""}                        />
                     },
-                    headerTransparent: true
+                    headerTransparent: true,
+                    headerRight: () => <HeaderRight/>
                 }}
             />
             <Stack.Screen
