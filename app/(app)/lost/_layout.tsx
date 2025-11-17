@@ -3,19 +3,18 @@ import GreetingHeader from "@/components/Shared/Header";
 import {Image, Text, View} from "react-native";
 import HeaderRight from "@/components/Shared/HeaderRight";
 
-export default function FoundLayout() {
+export default function LostLayout() {
     return (
         <Stack>
             <Stack.Screen
                 name="index"
                 options={{
-                    title: "Found Things",
+                    title: "Lost Things",
                     headerShown: true,
                     headerTitle: () => {
                         return <GreetingHeader
-                            screenTitle="Found Things"
-                            subTitle="Waiting for the owner" className={""}
-                        />
+                            screenTitle="Lost things"
+                            subTitle="Still not found the owner yet" className={""}                        />
                     },
                     headerTransparent: true,
                     headerRight: () => <HeaderRight/>
@@ -24,8 +23,9 @@ export default function FoundLayout() {
             <Stack.Screen
                 name="[id]"
                 options={{
-                    title: "Item Details",
-                    headerShown: true
+                    title: "Lost item details",
+                    headerShown: true,
+                    headerTransparent: true,
                 }}
             />
         </Stack>

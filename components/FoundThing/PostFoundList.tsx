@@ -2,6 +2,7 @@ import {Image, Text, TouchableOpacity, View} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import Button from "@/components/UI/Button";
 import {useRouter} from "expo-router";
+import PostList from "@/components/NewFeed/PostList";
 
 
 interface PostData {
@@ -188,13 +189,13 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
     );
 };
 
-const PostList = ({data}: PostListProps) => {
+const PostFoundList = ({data}: PostListProps) => {
     const router = useRouter();
 
     const handlePress = (id: string | number) => {
         console.log('Pressed item with id:', id)
         console.log('Navigating to:', `/found/${id}`)
-        router.push(`/lost/${id}`)
+        router.push(`/found/${id}`)
     }
 
     console.log('PostFoundList data:', data)
@@ -222,4 +223,4 @@ const PostList = ({data}: PostListProps) => {
     )
 }
 
-export default PostList
+export default PostFoundList;

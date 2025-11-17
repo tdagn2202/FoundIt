@@ -11,11 +11,11 @@ export default function AppLayout() {
     return (
         <NativeTabs
             minimizeBehavior="automatic">
-            <NativeTabs.Trigger name="(lost)">
+            <NativeTabs.Trigger name="lost">
                 <Label>Lost</Label>
                 <Icon sf={"magnifyingglass"} drawable="ic_menu_mylocation" selectedColor="#5250e1"/>
             </NativeTabs.Trigger>
-            <NativeTabs.Trigger name="(found)">
+            <NativeTabs.Trigger name="found">
                 <Label>Found</Label>
                 <Icon sf={"arrow.2.squarepath"} selectedColor="#5250e1"/>
             </NativeTabs.Trigger>

@@ -3,6 +3,7 @@ import { GlassView } from "expo-glass-effect";
 import { useEffect, useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import GlassButton from "@/components/UI/GlassButton";
+import {useRouter} from "expo-router";
 
 type props = {
     className?: string
@@ -21,7 +22,7 @@ const ProfileScreen = ({ className = "" }: props) => {
     const [userData, setUserData] = useState<UserData | undefined>();
     const [isEditing, setIsEditing] = useState(false);
     const [editedData, setEditedData] = useState<UserData | undefined>();
-
+    const router = useRouter();
     useEffect(() => {
         const getUser = async () => {
             const data = {
@@ -230,7 +231,7 @@ const ProfileScreen = ({ className = "" }: props) => {
                                     textSize="text-xl"
                                     height={50}
                                     onPress={() => {
-                                        console.log('Sign out pressed');
+                                        router.replace("/(auth)/Login")
                                     }}
                                 />
                             </>
