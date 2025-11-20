@@ -1,14 +1,18 @@
-import {Image, Text, View} from "react-native";
-import {useChat} from "@/Contexts/ChatContext";
-import {GlassView, isLiquidGlassAvailable} from "expo-glass-effect";
-import {LinearGradient} from "expo-linear-gradient";
+import { Image, Text, View } from "react-native";
+import { GlassView } from "expo-glass-effect";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface ChatHeaderProps {
-    className: string
+    className: string;
+    otherUserName?: string | string[];
+    otherUserAvatar?: string | string[];
 }
 
-const ChatHeader = ({className}: ChatHeaderProps) => {
-    const {selectedChat} = useChat()
+const ChatHeader = ({ className, otherUserName, otherUserAvatar }: ChatHeaderProps) => {
+    // Handle array case from route params
+    const name = Array.isArray(otherUserName) ? otherUserName[0] : otherUserName;
+    const avatar = Array.isArray(otherUserAvatar) ? otherUserAvatar[0] : otherUserAvatar;
+
     return (
         <View className={`justify-center items-center pt-[4rem] overflow-visible ${className}`}>
             <LinearGradient
@@ -16,17 +20,17 @@ const ChatHeader = ({className}: ChatHeaderProps) => {
                 style={{
                     position: 'absolute',
                     top: -20,
-                    left: -9999, // Extend far left
-                    right: -9999, // Extend far right
+                    left: -9999,
+                    right: -9999,
                     bottom: 0,
                     height: 200
                 }}
                 pointerEvents="none"
             />
             <Image
-                source={{uri: selectedChat?.avatar}}
+                source={{ uri: otherUserAvatar as string }}
                 className="h-20 w-20 rounded-full z-10"
-                resizeMode="contain"
+                resizeMode="cover"
                 style={{ marginBottom: -5 }}
             />
             <GlassView
@@ -40,9 +44,12 @@ const ChatHeader = ({className}: ChatHeaderProps) => {
                     alignItems: 'center',
                 }}
             >
-                <Text className="text-xl font-bold">{selectedChat?.name}</Text>
+                <Text className="text-xl font-bold">
+                    {otherUserName || 'Chat'}
+                </Text>
             </GlassView>
-        </View>    )
-}
+        </View>
+    );
+};
 
 export default ChatHeader;

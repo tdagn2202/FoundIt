@@ -24,7 +24,7 @@ export const usePost = ({ postId, autoFetch = true, options }: UseFetchPostsOpti
             const filteredPosts = data.filter((post: PostData) => post.item[0].status === options);
 
             setPosts(filteredPosts);
-            console.log(filteredPosts);
+
 
         } catch (err) {
             setError(err instanceof Error ? err.message : 'An error occurred');

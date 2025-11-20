@@ -19,8 +19,6 @@ export const posts = async (data: any) => {
                 }
             }
         );
-
-        console.log("Response:", res.data);
         return res;
     } catch (error) {
         // @ts-ignore

@@ -19,12 +19,7 @@
 //     data: PostData
 // }
 
-export interface PostUser {
-    id: number;
-    name: string;
-    avatar: string;
-    phone: string | null;
-}
+
 
 export interface PostType {
     id: number;
@@ -55,6 +50,14 @@ export interface PostItem {
     images: PostImage[];
 }
 
+export interface PostUser {
+    id: number;
+    email: string;
+    name: string;
+    avatar: string;
+    phone: string | null;
+}
+
 export interface PostData {
     id: number;
     title: string;
@@ -77,6 +80,7 @@ export interface PostListItemProps {
 }
 
 export interface UserDataProps {
+    id: string;
     name: string;
     email: string;
     avatar: string;

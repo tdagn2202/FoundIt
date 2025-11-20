@@ -1,15 +1,13 @@
-import {Stack} from 'expo-router';
-import {useRef} from 'react';
+import { Stack } from 'expo-router';
+import { useRef } from 'react';
 import GreetingHeader from "@/components/Shared/Header";
-import {useSearch} from "@/Contexts/SearchContext";
-import {useChat} from "@/Contexts/ChatContext";
+import { useSearch } from "@/Contexts/SearchContext";
 import ChatHeader from "@/components/Shared/ChatHeader";
 // @ts-ignore
-import {SearchBarCommands} from '@react-navigation/elements';
+import { SearchBarCommands } from '@react-navigation/elements';
 
 export default function ChatLayout() {
-    const {setSearchQuery} = useSearch()
-    const {selectedChat, sendMessage, inputText, setInputText} = useChat()
+    const { setSearchQuery } = useSearch();
     const searchBarRef = useRef<SearchBarCommands>(null);
 
     return (
@@ -25,7 +23,7 @@ export default function ChatLayout() {
                                 <GreetingHeader
                                     screenTitle="Messages"
                                     subTitle=""
-                                    className={"pt-7  overflow-visible h-[5rem] w-full"}
+                                    className={"pt-7 overflow-visible h-[5rem] w-full"}
                                 />
                             )
                         },
@@ -37,43 +35,37 @@ export default function ChatLayout() {
                             },
                         },
                         headerTransparent: true
-                    }}/>
+                    }}
+                />
                 <Stack.Screen
                     name="[id]"
-                    options={{
-                        headerShown: true,
-                        navigationBarHidden: true,
-                        title: selectedChat?.name,
-                        headerTitle: () => {
-                            return (
-                                <ChatHeader
-                                    className={"pt-7 overflow-visible h-[7rem] w-[85%]"}
-                                />
-                            )
-                        },
-                        headerSearchBarOptions: {
-                            ref: searchBarRef,
-                            placement: 'inline',
-                            placeholder: 'Enter message',
+                    options={({ route }) => {
+                        // Access params from the route
+                        const params = route.params as {
+                            otherUserName?: string;
+                            otherUserAvatar?: string;
+                        };
 
-                            hideNavigationBar: false,
+                        console.log('Layout route params:', params);
 
-                            onChangeText: (e) => {
-                                setInputText(e.nativeEvent.text);
+                        return {
+                            headerShown: true,
+                            navigationBarHidden: true,
+                            title: params?.otherUserName || 'Chat',
+                            headerTitle: () => {
+                                return (
+                                    <ChatHeader
+                                        className="pt-[8rem]"
+                                        otherUserName={params?.otherUserName}
+                                        otherUserAvatar={params?.otherUserAvatar}
+                                    />
+                                )
                             },
-                            onSearchButtonPress: () => {
-                                sendMessage(inputText);
-
-                                setInputText('');
-                                searchBarRef.current?.clearText();
-                                searchBarRef.current.cancelSearch();
-                            },
-                        },
-                        headerTransparent: true,
-                        presentation: 'modal'
+                            headerTransparent: true,
+                            presentation: 'modal'
+                        };
                     }}
-                >
-                </Stack.Screen>
+                />
             </Stack>
         </>
     );

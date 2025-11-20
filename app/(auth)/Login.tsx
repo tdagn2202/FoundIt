@@ -23,12 +23,13 @@ const Login = () => {
 
     useEffect(() => {
         const checkCredentials = async () => {
-            if(await AsyncStorage.getItem("token") !== '') {
-                navigation.replace("/(app)/lost")
+            const token = await AsyncStorage.getItem("token");
+            if (token) {
+                navigation.replace("/(app)/lost");
             }
         }
-        checkCredentials()
-    }, [])
+        checkCredentials();
+    }, []);
 
     const handleLogin = async () => {
         if (await login({email, password})) {

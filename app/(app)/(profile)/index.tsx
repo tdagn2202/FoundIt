@@ -8,6 +8,7 @@ import { useMe } from "@/hooks/useMe";
 import Constants from "expo-constants";
 import axios from "axios";
 import * as ImagePicker from 'expo-image-picker';
+import {logout} from "@/api/authApi";
 
 type props = {
     className?: string
@@ -312,7 +313,9 @@ const ProfileScreen = ({ className = "" }: props) => {
                                     textSize="text-xl"
                                     height={50}
                                     onPress={() => {
-                                        router.replace("/(auth)/Login")
+                                        logout().then(() => {
+                                            router.replace("/(auth)/Login")
+                                        })
                                     }}
                                 />
                             </>

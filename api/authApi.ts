@@ -29,8 +29,13 @@ export const login = async ({email, password}: loginProps) => {
 
 }
 
-exports.logout = async ({email}: loginProps) => {
-    await AsyncStorage.removeItem("token");
+export const logout = async () => {
+    try {
+        await AsyncStorage.removeItem("token");
+        console.log("Token removed successfully");
+    } catch (error) {
+        console.error("Error during logout:", error);
+    }
 }
 
 export const signUp = async ({email, password, passwordConfirm, name}: signUpProps) => {

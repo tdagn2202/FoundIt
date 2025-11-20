@@ -5,37 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="95b0099a-d98e-49b9-a3ae-42e2fb384ccd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env-example" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/authApi.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/api/postsApi.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/helper/minuteAgo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/useMe.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/usePost.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/postProps.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/api/chatApi.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/Shared/EmptyState.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/firebaseConfig.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/useChat.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/(new_post)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(new_post)/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/authApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/authApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/postsApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/api/postsApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(app)/(profile)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/(profile)/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/found/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/found/_layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/found/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/found/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/lost/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/lost/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/lost/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/lost/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/chat/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/chat/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/chat/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/chat/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(app)/chat/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/chat/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(app)/lost/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/lost/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(auth)/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(auth)/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(auth)/Register.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(new_post_stepper)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(new_post_stepper)/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/FoundThing/PostFoundList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/FoundThing/PostFoundList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/NewFeed/PostList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewFeed/PostList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/NewPost/NearByFoundModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPost/NearByFoundModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/NewPost/OwnPostList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewPost/OwnPostList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Shared/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Shared/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Shared/HeaderRight.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Shared/HeaderRight.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/AnimatedPhoneInput.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/AnimatedPhoneInput.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/Button.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/Button.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Shared/ChatHeader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Shared/ChatHeader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Shared/HorizontalCategory.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Shared/HorizontalCategory.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/useMe.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/useMe.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/usePost.ts" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/usePost.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/types/postProps.ts" beforeDir="false" afterPath="$PROJECT_DIR$/types/postProps.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +120,7 @@
       <workItem from="1763524139639" duration="3285000" />
       <workItem from="1763533536664" duration="12953000" />
       <workItem from="1763560316281" duration="10838000" />
-      <workItem from="1763605298580" duration="5728000" />
+      <workItem from="1763605298580" duration="22256000" />
     </task>
     <servers />
   </component>

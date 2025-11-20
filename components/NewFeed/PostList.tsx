@@ -1,14 +1,17 @@
-import {Image, Text, TouchableOpacity, View} from "react-native";
+import {Alert, Image, Text, TouchableOpacity, View} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import Button from "@/components/UI/Button";
 import {useRouter} from "expo-router";
 import {PostImage, PostListItemProps, PostListProps} from "@/types/postProps";
 import {timeAgoMinutesOrHours} from "@/helper/minuteAgo";
+import {useMe} from "@/hooks/useMe";
+import {getOrCreateChat} from "@/api/chatApi";
+import EmptyState from "@/components/Shared/EmptyState";
 
 
 const ImageGallery = ({images}: { images: PostImage[] }) => {
     if (!images || images.length === 0) {
-        console.log("Image null")
+        // console.log("This post has no images")
         return null;
     }
 
@@ -106,6 +109,46 @@ const ImageGallery = ({images}: { images: PostImage[] }) => {
 };
 
 const PostListItem: React.FC<PostListItemProps> = ({data}) => {
+    const router = useRouter();
+    const {userData} = useMe();
+
+
+    const handleContactOwner = async () => {
+        if (!userData?.email || !data.user.email) {
+            Alert.alert("Error", "Please login to contact the owner");
+            return;
+        }
+
+        try {
+            const chatId = await getOrCreateChat(
+                userData.email,
+                data.user.email,
+                {name: userData.name, avatar: userData.avatar},
+                {name: data.user.name, avatar: data.user.avatar}
+            );
+
+            // Pass post details to the chat room
+            router.push({
+                pathname: `/(app)/chat/${chatId}`,
+                params: {
+                    otherUserEmail: data.user.email,
+                    otherUserName: data.user.name,
+                    otherUserAvatar: data.user.avatar,
+                    // Add post context
+                    postTitle: data.title,
+                    postContent: data.content,
+                    postType: data.item[0].type.name,
+                    postBuilding: data.facility?.college || '',
+                    postRoom: data.room?.name || '',
+                    postImage: data.item[0].images?.[0]?.url || ''
+                }
+            });
+        } catch (error) {
+            console.error("Error starting chat:", error);
+            Alert.alert("Error", "Failed to start chat. Please try again.");
+        }
+    };
+
     return (
         <View className="bg-white rounded-3xl p-4 mx-4 mb-4"
               style={{
@@ -173,18 +216,19 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
 
             {/* Action Button */}
             <Button text={"Got you, get in touch!"}
-                    onPress={function (): void {throw new Error("Function not implemented.");}}
+                    onPress={handleContactOwner}
                     isLoading={false}/>
         </View>
     );
 };
 
+
 const PostList = ({data}: PostListProps) => {
     const router = useRouter();
-
+    const {userData} = useMe()
 
     if (!data || data.length === 0) {
-        return <Text>Waiting for data</Text>
+        return <EmptyState />
     }
 
     const handlePress = (id: string | number) => {
@@ -194,7 +238,6 @@ const PostList = ({data}: PostListProps) => {
     return (
         <View>
             {data.map((item, index) => {
-
                 return (
                     <TouchableOpacity
                         key={item.id || index}
