@@ -33,7 +33,7 @@ const GreetingHeader = ({ screenTitle, subTitle="", className } : GreetingHeader
         <View className={`flex-row items-start justify-start pt-3 pl-2  ${className}`}>
             {/* Left side - Avatar and Greeting */}
             <View className="">
-                <Text className="text-4xl font-bold">{screenTitle}</Text>
+                <Text className="text-3xl font-bold">{screenTitle}</Text>
                 <Text className="text-lg text-gray-500">{subTitle}</Text>
             </View>
 

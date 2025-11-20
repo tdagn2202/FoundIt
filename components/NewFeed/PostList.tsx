@@ -2,36 +2,23 @@ import {Image, Text, TouchableOpacity, View} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import Button from "@/components/UI/Button";
 import {useRouter} from "expo-router";
+import {PostImage, PostListItemProps, PostListProps} from "@/types/postProps";
+import {timeAgoMinutesOrHours} from "@/helper/minuteAgo";
 
 
-interface PostData {
-    id: string | number;
-    userAvatar: string;
-    title: string;
-    timeAgo: string;
-    description: string;
-    type: string;
-    building: string;
-    room: string;
-    images: string[];
-}
+const ImageGallery = ({images}: { images: PostImage[] }) => {
+    if (!images || images.length === 0) {
+        console.log("Image null")
+        return null;
+    }
 
-interface PostListProps {
-    data: PostData[]
-}
-
-interface PostListItemProps {
-    data: PostData
-}
-
-const ImageGallery = ({images}: { images: string[] }) => {
     const imageCount = images.length;
 
     // 1 image - Full width
     if (imageCount === 1) {
         return (
             <Image
-                source={{uri: images[0]}}
+                source={{uri: images[0].url}}
                 className="w-full h-72 rounded-2xl"
                 resizeMode="cover"
             />
@@ -42,10 +29,10 @@ const ImageGallery = ({images}: { images: string[] }) => {
     if (imageCount === 2) {
         return (
             <View className="flex-row gap-2">
-                {images.slice(0, 2).map((img, idx) => (
+                {images.slice(0, 2).map((img) => (
                     <Image
-                        key={idx}
-                        source={{uri: img}}
+                        key={img.id}
+                        source={{uri: img.url}}
                         className="flex-1 h-48 rounded-2xl"
                         resizeMode="cover"
                     />
@@ -59,18 +46,18 @@ const ImageGallery = ({images}: { images: string[] }) => {
         return (
             <View className="flex-row gap-2 h-72">
                 <Image
-                    source={{uri: images[0]}}
+                    source={{uri: images[0].url}}
                     className="flex-1 rounded-2xl"
                     resizeMode="cover"
                 />
                 <View className="flex-1 gap-2">
                     <Image
-                        source={{uri: images[1]}}
+                        source={{uri: images[1].url}}
                         className="flex-1 rounded-2xl"
                         resizeMode="cover"
                     />
                     <Image
-                        source={{uri: images[2]}}
+                        source={{uri: images[2].url}}
                         className="flex-1 rounded-2xl"
                         resizeMode="cover"
                     />
@@ -86,10 +73,10 @@ const ImageGallery = ({images}: { images: string[] }) => {
     return (
         <View className="gap-2">
             <View className="flex-row gap-2">
-                {displayImages.slice(0, 2).map((img, idx) => (
+                {displayImages.slice(0, 2).map((img) => (
                     <Image
-                        key={idx}
-                        source={{uri: img}}
+                        key={img.id}
+                        source={{uri: img.url}}
                         className="flex-1 h-36 rounded-2xl"
                         resizeMode="cover"
                     />
@@ -97,9 +84,9 @@ const ImageGallery = ({images}: { images: string[] }) => {
             </View>
             <View className="flex-row gap-2">
                 {displayImages.slice(2, 4).map((img, idx) => (
-                    <View key={idx} className="flex-1 relative">
+                    <View key={img.id} className="flex-1 relative">
                         <Image
-                            source={{uri: img}}
+                            source={{uri: img.url}}
                             className="w-full h-36 rounded-2xl"
                             resizeMode="cover"
                         />
@@ -118,7 +105,6 @@ const ImageGallery = ({images}: { images: string[] }) => {
     );
 };
 
-
 const PostListItem: React.FC<PostListItemProps> = ({data}) => {
     return (
         <View className="bg-white rounded-3xl p-4 mx-4 mb-4"
@@ -133,25 +119,28 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
             {/* Header - User Info */}
             <View className="flex-row items-center mb-3">
                 <Image
-                    source={{uri: data.userAvatar}}
+                    source={{uri: data.user.avatar}}
                     className="w-12 h-12 rounded-full"
                 />
                 <View className="ml-3 flex-1">
                     <Text className="text-gray-900 font-semibold text-base">
-                        {data.title}
+                        {data.user.name}
                     </Text>
                     <View className="flex-row items-center mt-1">
                         <Ionicons name="time-outline" size={14} color="#5250e1"/>
                         <Text className="text-[#5250e1] text-xs ml-1 font-medium">
-                            {data.timeAgo}
+                            {timeAgoMinutesOrHours(data.create_At)}
                         </Text>
                     </View>
                 </View>
             </View>
 
             {/* Description */}
+            <Text className="text-[#464545] text-md font-bold text-xl">
+                {data.title}
+            </Text>
             <Text className="text-[#464545] text-md mb-3">
-                {data.description}
+                {data.content}
             </Text>
 
             {/* Tags */}
@@ -159,31 +148,33 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
                 <View className="flex-row items-center bg-[#c9c8eb] px-3 py-1.5 rounded-full mr-2 mb-2">
                     <Ionicons name="card-outline" size={14} color="#5250e1"/>
                     <Text className="text-[#5250e1] text-xs ml-1 font-medium">
-                        Type: {data.type}
+                        Type: {data.item[0].type.name}
                     </Text>
                 </View>
                 <View className="flex-row items-center bg-gray-100 px-3 py-1.5 rounded-full mr-2 mb-2">
                     <Ionicons name="business-outline" size={14} color="#6B7280"/>
                     <Text className="text-gray-600 text-xs ml-1">
-                        Building: {data.building}
+                        Building: {data.facility?.college}
                     </Text>
                 </View>
                 <View className="flex-row items-center bg-gray-100 px-3 py-1.5 rounded-full mb-2">
                     <Ionicons name="location-outline" size={14} color="#6B7280"/>
                     <Text className="text-gray-600 text-xs ml-1">
-                        Room: {data.room}
+                        Room: {data.room?.name}
                     </Text>
                 </View>
             </View>
 
             {/* Image Gallery */}
             <View className="mb-4">
-                <ImageGallery images={data.images}/>
+                <ImageGallery images={data.item[0].images}/>
             </View>
 
 
             {/* Action Button */}
-            <Button text={"Got you, get in touch!"}/>
+            <Button text={"Got you, get in touch!"}
+                    onPress={function (): void {throw new Error("Function not implemented.");}}
+                    isLoading={false}/>
         </View>
     );
 };
@@ -191,19 +182,18 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
 const PostList = ({data}: PostListProps) => {
     const router = useRouter();
 
+
+    if (!data || data.length === 0) {
+        return <Text>Waiting for data</Text>
+    }
+
     const handlePress = (id: string | number) => {
-        console.log('Pressed item with id:', id)
-        console.log('Navigating to:', `/found/${id}`)
         router.push(`/lost/${id}`)
     }
 
-    console.log('PostFoundList data:', data)
     return (
         <View>
             {data.map((item, index) => {
-                console.log(`=== Item ${index} ===`);
-                console.log('item.id:', item.id);
-                console.log('Full item keys:', Object.keys(item));
 
                 return (
                     <TouchableOpacity

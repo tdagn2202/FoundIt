@@ -2,46 +2,32 @@ import { Image, Text, View, ScrollView, Dimensions } from "react-native";
 import { GlassView } from "expo-glass-effect";
 import { useState } from "react";
 import { Ionicons } from "@expo/vector-icons";
+import {usePost} from "@/hooks/usePost";
+import {useSearchParams} from "expo-router/build/hooks";
+import {useLocalSearchParams} from "expo-router";
+import {timeAgoMinutesOrHours} from "@/helper/minuteAgo";
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
-interface ItemData {
-    id: string | number;
-    userAvatar: string;
-    title: string;
-    timeAgo: string;
-    description: string;
-    type: string;
-    building: string;
-    room: string;
-    images: string[];
-    contactName?: string;
-    contactEmail?: string;
-    contactPhone?: string;
-}
+// interface ItemData {
+//     id: string | number;
+//     userAvatar: string;
+//     title: string;
+//     timeAgo: string;
+//     description: string;
+//     type: string;
+//     building: string;
+//     room: string;
+//     images: string[];
+//     contactName?: string;
+//     contactEmail?: string;
+//     contactPhone?: string;
+// }
 
 const LostItemDetailPage = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-    // Sample data - this would come from route params in real app
-    const itemData: ItemData = {
-        id: 1,
-        userAvatar: "https://i.pravatar.cc/150?img=2",
-        title: "Found Student ID Card",
-        timeAgo: "2 hours ago",
-        description: "Found this student ID card near the library. The owner can contact me to claim it.",
-        type: "ID Card",
-        building: "ATL",
-        room: "303",
-        images: [
-            "https://picsum.photos/400/300",
-            "https://picsum.photos/400/301",
-            "https://picsum.photos/400/302"
-        ],
-        contactName: "Nguyen Van A",
-        contactEmail: "nguyenvana@example.com",
-        contactPhone: "+84 123 456 789"
-    };
+    const {id} = useLocalSearchParams();
+    const {post} = usePost({postId: Number(id)})
 
     const handleScroll = (event: any) => {
         const slideSize = SCREEN_WIDTH;
@@ -70,10 +56,10 @@ const LostItemDetailPage = () => {
                     onScroll={handleScroll}
                     scrollEventThrottle={16}
                 >
-                    {itemData.images.map((image, index) => (
+                    {post?.item[0].images.map((image, index) => (
                         <Image
                             key={index}
-                            source={{ uri: image }}
+                            source={{ uri: image.url }}
                             style={{ width: SCREEN_WIDTH, height: 300 }}
                             resizeMode="cover"
                         />
@@ -82,7 +68,7 @@ const LostItemDetailPage = () => {
 
                 {/* Image Indicator Dots */}
                 <View className="absolute bottom-4 left-0 right-0 flex-row justify-center">
-                    {itemData.images.map((_, index) => (
+                    {post?.item[0].images.map((_, index) => (
                         <View
                             key={index}
                             className={`h-2 rounded-full mx-1 ${
@@ -99,12 +85,12 @@ const LostItemDetailPage = () => {
                 {/* Title Section */}
                 <View className="mb-5">
                     <Text className="text-2xl font-bold text-gray-900 mb-2">
-                        {itemData.title}
+                        {post?.title}
                     </Text>
                     <View className="flex-row items-center">
                         <Ionicons name="time-outline" size={16} color="#5250e1" />
                         <Text className="text-[#5250e1] text-sm ml-1 font-medium">
-                            {itemData.timeAgo}
+                            {timeAgoMinutesOrHours(post?.create_At)}
                         </Text>
                     </View>
                 </View>
@@ -114,19 +100,19 @@ const LostItemDetailPage = () => {
                     <View className="flex-row items-center bg-[#c9c8eb] px-4 py-2 rounded-full mr-2 mb-2">
                         <Ionicons name="pricetag" size={14} color="#5250e1" />
                         <Text className="text-[#5250e1] text-sm ml-2 font-medium">
-                            {itemData.type}
+                            {post?.item[0].type.name}
                         </Text>
                     </View>
                     <View className="flex-row items-center bg-gray-100 px-4 py-2 rounded-full mr-2 mb-2">
                         <Ionicons name="business-outline" size={14} color="#6B7280" />
                         <Text className="text-gray-600 text-sm ml-2">
-                            {itemData.building}
+                            {post?.facility.college}
                         </Text>
                     </View>
                     <View className="flex-row items-center bg-gray-100 px-4 py-2 rounded-full mb-2">
                         <Ionicons name="location-outline" size={14} color="#6B7280" />
                         <Text className="text-gray-600 text-sm ml-2">
-                            Room {itemData.room}
+                            Room {post?.room.name}
                         </Text>
                     </View>
                 </View>
@@ -135,7 +121,7 @@ const LostItemDetailPage = () => {
                 <View className="mb-5">
                     <Text className="text-base font-semibold text-gray-900 mb-2">Description</Text>
                     <Text className="text-base text-gray-700 leading-6">
-                        {itemData.description}
+                        {post?.content}
                     </Text>
                 </View>
 
@@ -157,28 +143,28 @@ const LostItemDetailPage = () => {
                         <InfoRow
                             icon="pricetag-outline"
                             label="Item Type"
-                            value={itemData.type}
+                            value={post?.item[0].type?.name || ""}
                         />
                         <View className="h-px bg-gray-200" />
 
                         <InfoRow
                             icon="business-outline"
                             label="Building"
-                            value={itemData.building}
+                            value={post?.facility.college || ""}
                         />
                         <View className="h-px bg-gray-200" />
 
                         <InfoRow
                             icon="location-outline"
                             label="Room Number"
-                            value={itemData.room}
+                            value={post?.room?.name || ""}
                         />
                         <View className="h-px bg-gray-200" />
 
                         <InfoRow
                             icon="time-outline"
                             label="Posted"
-                            value={itemData.timeAgo}
+                            value={timeAgoMinutesOrHours(post?.create_At)}
                         />
                     </GlassView>
                 </View>
@@ -201,21 +187,21 @@ const LostItemDetailPage = () => {
                         <InfoRow
                             icon="person-outline"
                             label="Contact Name"
-                            value={itemData.contactName || "Not provided"}
+                            value={post?.user?.name || "Not provided"}
                         />
                         <View className="h-px bg-gray-200" />
 
                         <InfoRow
                             icon="mail-outline"
                             label="Email Address"
-                            value={itemData.contactEmail || "Not provided"}
+                            value={post?.user?.phone|| "Not provided"}
                         />
                         <View className="h-px bg-gray-200" />
 
                         <InfoRow
                             icon="call-outline"
                             label="Phone Number"
-                            value={itemData.contactPhone || "Not provided"}
+                            value={post?.user?.phone || "Not provided"}
                         />
                     </GlassView>
                 </View>

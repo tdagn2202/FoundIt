@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import {Image, Text, TouchableOpacity, View} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AnimatedInput from "../../components/UI/AnimatedInput";
 import Button from "@/components/UI/Button";
 import RoundedButton from "@/components/UI/RoundedButton";
 import {useRouter} from "expo-router";
+import {signUp} from "@/api/authApi";
 
 const GGOauth = () => {
     return(
@@ -16,6 +17,17 @@ const GGOauth = () => {
 
 const Register = () => {
     const navigation = useRouter();
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConfirm, setPasswordConfirm] = useState("");
+
+    const handleRegister = async () => {
+        if(await signUp({name, email, password, passwordConfirm})) {
+            navigation.navigate("/Login");
+        }
+    }
+
     return (
         <SafeAreaView className="flex-1 bg-[#fdfdfd] pt-[4.5rem]">
             {/* Header container */}
@@ -28,29 +40,37 @@ const Register = () => {
             </View>
 
             {/* Input fields */}
-            <View className="flex-1 justify-center items-center px-8 gap-4 pt-[10rem]">
+            <View className="flex-1 justify-center items-center px-8 gap-4 pt-[12rem]">
+                <AnimatedInput
+                    placeholder="Enter your name"
+                    keyboardType="default"
+                    onChangeText={setName}
+                />
                 <AnimatedInput
                     placeholder="daisy@design.com"
                     keyboardType="email-address"
+                    onChangeText={setEmail}
                 />
                 <AnimatedInput
                     placeholder="Password"
                     secureTextEntry
+                    onChangeText={setPassword}
                 />
                 <AnimatedInput
                     placeholder="Re-enter password"
                     secureTextEntry
+                    onChangeText={setPasswordConfirm}
                 />
 
-                <RoundedButton text={"Sign in"} onPress={() => {}}/>
+                <RoundedButton text={"Sign in"} onPress={handleRegister}/>
 
             </View>
 
             {/* Oauth and login */}
-            <View className="flex-1 justify-center items-center p-3 px-8 pt-[4rem]">
+            <View className="flex-1 justify-center items-center p-3 px-8 pt-[7rem]">
                 <Text className="pt-16 text-[#787b7f] text-sm">or continue with</Text>
                 <GGOauth />
-                <View className="flex-row justify-center mt-4 pt-[1.31rem]">
+                <View className="flex-row justify-center mt-4 pt-[0rem]">
                     <Text className="text-gray-700">
                         Already have an account?{" "}
                     </Text>

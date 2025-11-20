@@ -7,5 +7,5 @@ export default function RootLayout() {
       <Stack.Screen name="(splash)" />
       <Stack.Screen name="(auth)" />
       <Stack.Screen name="(app)" />
-  </Stack></ChatProvider>    </SearchProvider>
+  </Stack></ChatProvider></SearchProvider>
 }

@@ -91,13 +91,11 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
     };
 
     const handlePhoneChange = (text: string) => {
-        // Remove non-numeric characters
         const cleaned = text.replace(/[^0-9]/g, '');
         setPhoneNumber(cleaned);
         onValueChange?.(cleaned, selectedCountry.dialCode);
     };
 
-    // Filter countries based on search query
     const filteredCountries = countryCodes.filter(country =>
         country.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         country.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -114,9 +112,8 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
         };
     });
 
-    // Size variants
-    let sizeClasses = "";
-    let textSize = "";
+    let sizeClasses;
+    let textSize;
     switch (size) {
         case "small":
             sizeClasses = "py-4";
@@ -137,19 +134,14 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
         <View>
             <Animated.View
                 style={animatedStyle}
-                className={`border rounded-2xl w-full flex-row items-center ${sizeClasses} ${className}`}
-            >
-                {/* Country Code Selector */}
+                className={`border rounded-2xl w-full flex-row items-center ${sizeClasses} ${className}`}>
                 <TouchableOpacity
                     onPress={handleOpen}
-                    className="flex-row items-center px-4 border-r border-gray-300"
-                >
+                    className="flex-row items-center px-4 border-r border-gray-300">
                     <Text className="text-2xl mr-2">{selectedCountry.flag}</Text>
                     <Text className={`font-bold ${textSize} mr-1`}>{selectedCountry.dialCode}</Text>
                     <Ionicons name="chevron-down" size={16} color="#9ca3af" />
                 </TouchableOpacity>
-
-                {/* Phone Number Input */}
                 <AnimatedTextInput
                     className={`flex-1 font-bold ${textSize} pl-4 pr-4`}
                     placeholder={placeholder}
@@ -162,18 +154,14 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
                 />
             </Animated.View>
 
-            {/* Country Code Modal */}
-            {/* Country Code Modal */}
             <Modal visible={isOpen} transparent animationType="slide" onRequestClose={handleClose}>
                 <TouchableOpacity
                     style={{ flex: 1, backgroundColor: "rgba(0, 0, 0, 0.5)" }}
                     activeOpacity={1}
-                    onPress={handleClose}
-                >
+                    onPress={handleClose}>
                     <View className="flex-1 justify-end">
                         <TouchableOpacity activeOpacity={1}>
-                            <View className="bg-white rounded-t-3xl overflow-hidden pb-6"> {/* Added pb-6 here */}
-                                {/* Title Section with Background Image */}
+                            <View className="bg-white rounded-t-3xl overflow-hidden pb-6">
                                 <View className="relative">
                                     {backgroundImage && (
                                         <ImageBackground
@@ -187,7 +175,6 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
                                             resizeMode="cover"
                                         />
                                     )}
-
                                     <View className="px-6 pt-6 pb-4">
                                         <Text className="text-2xl font-bold text-gray-900">
                                             {modalTitle}
@@ -196,8 +183,6 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
                                             {modalSubtitle}
                                         </Text>
                                     </View>
-
-                                    {/* Gradient Overlay */}
                                     <LinearGradient
                                         colors={["rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 0)"]}
                                         start={{ x: 0, y: 1 }}
@@ -211,8 +196,6 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
                                         }}
                                     />
                                 </View>
-
-                                {/* Search Bar */}
                                 <View className="bg-white px-6 py-3">
                                     <View className="flex-row items-center bg-gray-100 rounded-xl px-4 py-3">
                                         <Ionicons name="search" size={20} color="#9ca3af" />
@@ -231,9 +214,7 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
                                         )}
                                     </View>
                                 </View>
-
-                                {/* Country List */}
-                                <View className="bg-white" style={{ height: 400 }}> {/* Added fixed height */}
+                                <View className="bg-white" style={{ height: 400 }}>
                                     {filteredCountries.length > 0 ? (
                                         <FlatList
                                             data={filteredCountries}
@@ -243,8 +224,7 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
                                                     onPress={() => handleSelectCountry(item)}
                                                     className={`py-5 px-6 border-b border-gray-200 flex-row items-center ${
                                                         selectedCountry.code === item.code ? "bg-blue-50" : ""
-                                                    }`}
-                                                >
+                                                    }`}>
                                                     <Text className="text-3xl mr-4">{item.flag}</Text>
                                                     <View className="flex-1">
                                                         <Text className="text-lg font-bold text-gray-900">
@@ -257,8 +237,7 @@ const AnimatedPhoneInput: React.FC<AnimatedPhoneInputProps> = ({
                                                             selectedCountry.code === item.code
                                                                 ? "text-blue-600"
                                                                 : "text-gray-600"
-                                                        }`}
-                                                    >
+                                                        }`}>
                                                         {item.dialCode}
                                                     </Text>
                                                 </TouchableOpacity>

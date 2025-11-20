@@ -45,6 +45,9 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "API_BASE": "https://groovelike-revengingly-earle.ngrok-free.dev"
     }
   }
 }

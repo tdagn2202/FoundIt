@@ -1,30 +1,15 @@
-import {Image, Text, TouchableOpacity, View} from "react-native";
+import {Alert, Image, Text, TouchableOpacity, View} from "react-native";
 import {Ionicons} from "@expo/vector-icons";
 import Button from "@/components/UI/Button";
 import {GlassView} from "expo-glass-effect";
 import GlassViewIos from "expo-glass-effect/src/GlassView.ios";
 import {useRef, useState} from "react";
-import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
-
-
-interface PostData {
-    userAvatar: string;
-    title: string;
-    timeAgo: string;
-    description: string;
-    type: string;
-    building: string;
-    room: string;
-    images: string[];
-}
-
-interface PostListProps {
-    data: any[]
-}
-
-interface PostListItemProps {
-    data: any
-}
+import Animated, {useSharedValue, useAnimatedStyle, withSpring} from 'react-native-reanimated';
+import {PostListItemProps, PostListProps} from "@/types/postProps";
+import {timeAgoMinutesOrHours} from "@/helper/minuteAgo";
+import Octicons from '@expo/vector-icons/Octicons';
+import {postDone} from "@/api/postsApi";
+import {usePost} from "@/hooks/usePost";
 
 const ImageGallery = ({images}: { images: string[] }) => {
     const imageCount = images.length;
@@ -121,20 +106,34 @@ const ImageGallery = ({images}: { images: string[] }) => {
 };
 
 
-
-
-const PostListItem: React.FC<PostListItemProps> = ({data}) => {
+const PostListItem: React.FC<PostListItemProps> = ({data,refetch}) => {
     type GlassEffectType = "clear" | "regular";
 
     const scale = useSharedValue(1);
     const [glassEffect, setGlassEffect] = useState<GlassEffectType>("regular");
 
-    const handlePressIn = () => {
+    const isFound = data.item[0].status === "Done"
+
+    const handlePressIn = async (id: number) => {
         setGlassEffect('clear');
         scale.value = withSpring(1.1, {
             damping: 10,
             stiffness: 300,
         });
+        try {
+            const res = await postDone(data.id);
+            console.log('postDone response:', res);
+
+            if (res) {
+                if (refetch) {
+                    await refetch();
+                }
+                Alert.alert("Success", "Your post has been hidden from other people and marked as found!");
+            }
+        } catch (e) {
+            console.error('Error in handlePressIn:', e);
+            Alert.alert("Error", "Failed to update post. Please try again.");
+        }
     };
 
     const handlePressOut = () => {
@@ -148,7 +147,7 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
 
     const animatedStyle = useAnimatedStyle(() => {
         return {
-            transform: [{ scale: scale.value }],
+            transform: [{scale: scale.value}],
         };
     });
     return (
@@ -164,17 +163,17 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
             {/* Header - User Info */}
             <View className="flex-row items-center mb-3">
                 <Image
-                    source={{uri: data.userAvatar}}
+                    source={{uri: data.user.avatar}}
                     className="w-12 h-12 rounded-full"
                 />
                 <View className="ml-3 flex-1">
                     <Text className="text-gray-900 font-semibold text-base">
-                        {data.title}
+                        {data.user.name}
                     </Text>
                     <View className="flex-row items-center mt-1">
                         <Ionicons name="time-outline" size={14} color="#5250e1"/>
                         <Text className="text-[#5250e1] text-xs ml-1 font-medium">
-                            {data.timeAgo}
+                            {timeAgoMinutesOrHours(data.create_At)}
                         </Text>
                     </View>
                 </View>
@@ -182,7 +181,7 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
 
             {/* Description */}
             <Text className="text-[#464545] text-md mb-3">
-                {data.description}
+                {data.content}
             </Text>
 
             {/* Tags */}
@@ -190,66 +189,76 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
                 <View className="flex-row items-center bg-[#c9c8eb] px-3 py-1.5 rounded-full mr-2 mb-2">
                     <Ionicons name="card-outline" size={14} color="#5250e1"/>
                     <Text className="text-[#5250e1] text-xs ml-1 font-medium">
-                        Type: {data.type}
+                        Type: {data.item[0].type.name}
                     </Text>
                 </View>
                 <View className="flex-row items-center bg-gray-100 px-3 py-1.5 rounded-full mr-2 mb-2">
                     <Ionicons name="business-outline" size={14} color="#6B7280"/>
                     <Text className="text-gray-600 text-xs ml-1">
-                        Building: {data.building}
+                        Building: {data.facility?.college}
                     </Text>
                 </View>
                 <View className="flex-row items-center bg-gray-100 px-3 py-1.5 rounded-full mb-2">
                     <Ionicons name="location-outline" size={14} color="#6B7280"/>
                     <Text className="text-gray-600 text-xs ml-1">
-                        Room: {data.room}
+                        Room: {data.room?.name}
                     </Text>
                 </View>
             </View>
 
             {/* Image Gallery */}
             <View className="mb-4">
-                <ImageGallery images={data.images}/>
+                <ImageGallery images={data.item[0].images}/>
             </View>
 
 
             {/* Action Button */}
-            <TouchableOpacity
-                className="rounded-full"
-                onPressIn={handlePressIn}
-                onPressOut={handlePressOut}
-                activeOpacity={0.9}
-            >
-                <Animated.View style={animatedStyle}>
-                    <GlassView
-                        glassEffectStyle={glassEffect}
-                        style={{
-                            paddingHorizontal: 15,
-                            height: 50,
-                            paddingTop: 0,
-                            borderRadius: 100,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                        }}
-                    >
-                        <View className="p-3 justify-center item-center w-full rounded-full">
-                            <Text className="text-center text-xl font-bold text-red-500">
-                                Found! Hide my post
-                            </Text>
-                        </View>
-                    </GlassView>
-                </Animated.View>
-            </TouchableOpacity>
+            {isFound ? (
+                <View className="bg-[#c9c8eb] w-full rounded-xl items-center px-2 py-3">
+                    <View className="flex-row gap-[3px]">
+                        <Octicons name="verified" size={16} color="#5250e1"/>
+                        <Text className="font-bold text-md text-[#5250e1]">Found through FoundIt platform</Text>
+                    </View>
+                </View>
+            ) : (
+                <TouchableOpacity
+                    className="rounded-full"
+                    onPressIn={() => handlePressIn(data.id)}
+                    onPressOut={handlePressOut}
+                    activeOpacity={0.9}
+                >
+                    <Animated.View style={animatedStyle}>
+                        <GlassView
+                            glassEffectStyle={glassEffect}
+                            style={{
+                                paddingHorizontal: 15,
+                                height: 50,
+                                paddingTop: 0,
+                                borderRadius: 100,
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <View className="p-3 justify-center item-center w-full rounded-full">
+                                <Text className="text-center text-xl font-bold text-red-500">
+                                    Found! Hide my post
+                                </Text>
+                            </View>
+                        </GlassView>
+                    </Animated.View>
+                </TouchableOpacity>
+            )}
+
 
         </View>
     );
 };
 
-const OwnPostList = ({data}: PostListProps) => {
+const OwnPostList = ({data,refetch}: PostListProps) => {
     return (
         <View>
             {data.map((item, index) => (
-                <PostListItem key={index} data={item}/>
+                <PostListItem key={index} data={item} refetch={refetch}/>
             ))}
         </View>
     )
