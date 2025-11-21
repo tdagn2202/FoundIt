@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="95b0099a-d98e-49b9-a3ae-42e2fb384ccd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/hooks/useContactOwner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/found/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/found/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(app)/lost/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(app)/lost/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/(new_post_stepper)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(new_post_stepper)/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/FoundThing/PostFoundList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/FoundThing/PostFoundList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/NewFeed/PostList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/NewFeed/PostList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/Shared/HeaderRight.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Shared/HeaderRight.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ui/GlassButton.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ui/GlassButton.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="95b0099a-d98e-49b9-a3ae-42e2fb384ccd" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +98,7 @@
       <workItem from="1763533536664" duration="12953000" />
       <workItem from="1763560316281" duration="10838000" />
       <workItem from="1763605298580" duration="27282000" />
-      <workItem from="1763691971830" duration="635000" />
+      <workItem from="1763691971830" duration="948000" />
     </task>
     <servers />
   </component>
