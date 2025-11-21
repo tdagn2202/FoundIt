@@ -47,7 +47,17 @@
       "reactCompiler": true
     },
     "extra": {
-      "API_BASE": "https://groovelike-revengingly-earle.ngrok-free.dev"
+      "API_BASE": "https://groovelike-revengingly-earle.ngrok-free.dev",
+      "router": {},
+      "eas": {
+        "projectId": "e5237236-ec5f-4410-a363-90e6db0f5239"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/e5237236-ec5f-4410-a363-90e6db0f5239"
     }
   }
 }

@@ -1,7 +1,7 @@
-import { Text, TouchableOpacity, View } from "react-native";
-import { GlassView } from "expo-glass-effect";
-import { useState } from "react";
-import Animated, { useSharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
+import {Text, TouchableOpacity, View} from "react-native";
+import {GlassView} from "expo-glass-effect";
+import {useState} from "react";
+import Animated, {useSharedValue, useAnimatedStyle, withSpring} from 'react-native-reanimated';
 
 type GlassEffectType = "clear" | "regular";
 
@@ -15,6 +15,7 @@ interface GlassButtonProps {
     borderRadius?: number;
     scaleAmount?: number;
     className?: string;
+    disabled?: boolean;
 }
 
 const GlassButton: React.FC<GlassButtonProps> = ({
@@ -27,6 +28,7 @@ const GlassButton: React.FC<GlassButtonProps> = ({
                                                      borderRadius = 100,
                                                      scaleAmount = 1.1,
                                                      className = "",
+                                                     disabled
                                                  }) => {
     const scale = useSharedValue(1);
     const [glassEffect, setGlassEffect] = useState<GlassEffectType>("regular");
@@ -49,7 +51,7 @@ const GlassButton: React.FC<GlassButtonProps> = ({
 
     const animatedStyle = useAnimatedStyle(() => {
         return {
-            transform: [{ scale: scale.value }],
+            transform: [{scale: scale.value}],
         };
     });
 
@@ -60,6 +62,7 @@ const GlassButton: React.FC<GlassButtonProps> = ({
             onPressIn={handlePressIn}
             onPressOut={handlePressOut}
             activeOpacity={0.9}
+            disabled={disabled}
         >
             <Animated.View style={animatedStyle}>
                 <GlassView

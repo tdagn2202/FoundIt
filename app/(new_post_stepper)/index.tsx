@@ -254,7 +254,6 @@ const NewPostStepper = () => {
 
     return <View className={"pt-[9rem] justify-center items-center w-[100%] gap-2 bg-white "}>
         <ScrollView className="w-[90%]" showsVerticalScrollIndicator={false}>
-            <Button text={"Test modal"} onPress={() => setShowMatchModal(true)}/>
             <Text className="text-left w-full pl-2 font-bold">
                 You find or lost something? <Text className="text-red-500">*</Text>
             </Text>

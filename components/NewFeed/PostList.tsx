@@ -7,6 +7,7 @@ import {timeAgoMinutesOrHours} from "@/helper/minuteAgo";
 import {useMe} from "@/hooks/useMe";
 import {getOrCreateChat} from "@/api/chatApi";
 import EmptyState from "@/components/Shared/EmptyState";
+import {useContactOwner} from "@/hooks/useContactOwner";
 
 
 const ImageGallery = ({images}: { images: PostImage[] }) => {
@@ -113,42 +114,43 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
     const {userData} = useMe();
 
 
-    const handleContactOwner = async () => {
-        if (!userData?.email || !data.user.email) {
-            Alert.alert("Error", "Please login to contact the owner");
-            return;
-        }
+    // const handleContactOwner = async () => {
+    //     if (!userData?.email || !data.user.email) {
+    //         Alert.alert("Error", "Please login to contact the owner");
+    //         return;
+    //     }
+    //
+    //     try {
+    //         const chatId = await getOrCreateChat(
+    //             userData.email,
+    //             data.user.email,
+    //             {name: userData.name, avatar: userData.avatar},
+    //             {name: data.user.name, avatar: data.user.avatar}
+    //         );
+    //
+    //         // Pass post details to the chat room
+    //         router.push({
+    //             pathname: `/(app)/chat/${chatId}`,
+    //             params: {
+    //                 otherUserEmail: data.user.email,
+    //                 otherUserName: data.user.name,
+    //                 otherUserAvatar: data.user.avatar,
+    //                 // Add post context
+    //                 postTitle: data.title,
+    //                 postContent: data.content,
+    //                 postType: data.item[0].type.name,
+    //                 postBuilding: data.facility?.college || '',
+    //                 postRoom: data.room?.name || '',
+    //                 postImage: data.item[0].images?.[0]?.url || ''
+    //             }
+    //         });
+    //     } catch (error) {
+    //         console.error("Error starting chat:", error);
+    //         Alert.alert("Error", "Failed to start chat. Please try again.");
+    //     }
+    // };
 
-        try {
-            const chatId = await getOrCreateChat(
-                userData.email,
-                data.user.email,
-                {name: userData.name, avatar: userData.avatar},
-                {name: data.user.name, avatar: data.user.avatar}
-            );
-
-            // Pass post details to the chat room
-            router.push({
-                pathname: `/(app)/chat/${chatId}`,
-                params: {
-                    otherUserEmail: data.user.email,
-                    otherUserName: data.user.name,
-                    otherUserAvatar: data.user.avatar,
-                    // Add post context
-                    postTitle: data.title,
-                    postContent: data.content,
-                    postType: data.item[0].type.name,
-                    postBuilding: data.facility?.college || '',
-                    postRoom: data.room?.name || '',
-                    postImage: data.item[0].images?.[0]?.url || ''
-                }
-            });
-        } catch (error) {
-            console.error("Error starting chat:", error);
-            Alert.alert("Error", "Failed to start chat. Please try again.");
-        }
-    };
-
+    const { handleContactOwner } = useContactOwner();
     return (
         <View className="bg-white rounded-3xl p-4 mx-4 mb-4"
               style={{
@@ -216,7 +218,7 @@ const PostListItem: React.FC<PostListItemProps> = ({data}) => {
 
             {/* Action Button */}
             <Button text={"Got you, get in touch!"}
-                    onPress={handleContactOwner}
+                    onPress={() => handleContactOwner(data)}
                     isLoading={false}/>
         </View>
     );

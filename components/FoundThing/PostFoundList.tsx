@@ -129,7 +129,7 @@ const PostFoundListItem: React.FC<PostFoundListItemProps> = ({data}) => {
 
             // Pass post details to the chat room
             router.push({
-                pathname: `/(app)/chat/${chatId}`,
+                pathname: `/(app)/chat/${chatId} as any`,
                 params: {
                     otherUserEmail: data.user.email,
                     otherUserName: data.user.name,
@@ -237,7 +237,7 @@ const PostFoundList = ({data}: PostFoundListProps) => {
 
     return (
         <View>
-            {data.map((item, index) => {
+            {data.map((item: any, index: any) => {
                 return (
                     <TouchableOpacity
                         key={item.id || index}

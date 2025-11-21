@@ -1,13 +1,15 @@
-import { Image, Text, View, ScrollView, Dimensions } from "react-native";
-import { GlassView } from "expo-glass-effect";
-import { useState } from "react";
-import { Ionicons } from "@expo/vector-icons";
+import {Image, Text, View, ScrollView, Dimensions, TouchableOpacity} from "react-native";
+import {GlassView} from "expo-glass-effect";
+import {useState} from "react";
+import {Ionicons} from "@expo/vector-icons";
 import {usePost} from "@/hooks/usePost";
 import {useSearchParams} from "expo-router/build/hooks";
 import {useLocalSearchParams} from "expo-router";
 import {timeAgoMinutesOrHours} from "@/helper/minuteAgo";
+import {useMe} from "@/hooks/useMe";
+import {useContactOwner} from "@/hooks/useContactOwner";
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const {width: SCREEN_WIDTH} = Dimensions.get('window');
 
 // interface ItemData {
 //     id: string | number;
@@ -29,24 +31,27 @@ const LostItemDetailPage = () => {
     const {id} = useLocalSearchParams();
     const {post} = usePost({postId: Number(id)})
 
+    const {handleContactOwner} = useContactOwner()
+
     const handleScroll = (event: any) => {
         const slideSize = SCREEN_WIDTH;
         const index = Math.round(event.nativeEvent.contentOffset.x / slideSize);
         setCurrentImageIndex(index);
     };
 
-    const InfoRow = ({ icon, label, value }: { icon: string; label: string; value: string }) => (
+    const InfoRow = ({icon, label, value}: { icon: string; label: string; value: string }) => (
         <View className="py-3">
             <View className="flex-row items-center mb-1.5">
-                <Ionicons name={icon as any} size={16} color="#6B7280" />
+                <Ionicons name={icon as any} size={16} color="#6B7280"/>
                 <Text className="text-xs text-gray-500 ml-2 uppercase tracking-wider">{label}</Text>
             </View>
             <Text className="text-base font-semibold text-gray-900 ml-6">{value}</Text>
         </View>
     );
 
+
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: '#fff', paddingBottom: 20 }}>
+        <ScrollView style={{flex: 1, backgroundColor: '#fff', paddingBottom: 20}}>
             {/* Image Carousel */}
             <View className="relative">
                 <ScrollView
@@ -59,8 +64,8 @@ const LostItemDetailPage = () => {
                     {post?.item[0].images.map((image, index) => (
                         <Image
                             key={index}
-                            source={{ uri: image.url }}
-                            style={{ width: SCREEN_WIDTH, height: 300 }}
+                            source={{uri: image.url}}
+                            style={{width: SCREEN_WIDTH, height: 300}}
                             resizeMode="cover"
                         />
                     ))}
@@ -88,7 +93,7 @@ const LostItemDetailPage = () => {
                         {post?.title}
                     </Text>
                     <View className="flex-row items-center">
-                        <Ionicons name="time-outline" size={16} color="#5250e1" />
+                        <Ionicons name="time-outline" size={16} color="#5250e1"/>
                         <Text className="text-[#5250e1] text-sm ml-1 font-medium">
                             {timeAgoMinutesOrHours(post?.create_At)}
                         </Text>
@@ -98,19 +103,19 @@ const LostItemDetailPage = () => {
                 {/* Tags */}
                 <View className="flex-row flex-wrap mb-5">
                     <View className="flex-row items-center bg-[#c9c8eb] px-4 py-2 rounded-full mr-2 mb-2">
-                        <Ionicons name="pricetag" size={14} color="#5250e1" />
+                        <Ionicons name="pricetag" size={14} color="#5250e1"/>
                         <Text className="text-[#5250e1] text-sm ml-2 font-medium">
                             {post?.item[0].type.name}
                         </Text>
                     </View>
                     <View className="flex-row items-center bg-gray-100 px-4 py-2 rounded-full mr-2 mb-2">
-                        <Ionicons name="business-outline" size={14} color="#6B7280" />
+                        <Ionicons name="business-outline" size={14} color="#6B7280"/>
                         <Text className="text-gray-600 text-sm ml-2">
                             {post?.facility.college}
                         </Text>
                     </View>
                     <View className="flex-row items-center bg-gray-100 px-4 py-2 rounded-full mb-2">
-                        <Ionicons name="location-outline" size={14} color="#6B7280" />
+                        <Ionicons name="location-outline" size={14} color="#6B7280"/>
                         <Text className="text-gray-600 text-sm ml-2">
                             Room {post?.room.name}
                         </Text>
@@ -135,7 +140,7 @@ const LostItemDetailPage = () => {
                             paddingVertical: 4,
                             borderRadius: 20,
                             shadowColor: '#000',
-                            shadowOffset: { width: 0, height: 2 },
+                            shadowOffset: {width: 0, height: 2},
                             shadowOpacity: 0.05,
                             shadowRadius: 6,
                         }}
@@ -145,21 +150,21 @@ const LostItemDetailPage = () => {
                             label="Item Type"
                             value={post?.item[0].type?.name || ""}
                         />
-                        <View className="h-px bg-gray-200" />
+                        <View className="h-px bg-gray-200"/>
 
                         <InfoRow
                             icon="business-outline"
                             label="Building"
                             value={post?.facility.college || ""}
                         />
-                        <View className="h-px bg-gray-200" />
+                        <View className="h-px bg-gray-200"/>
 
                         <InfoRow
                             icon="location-outline"
                             label="Room Number"
                             value={post?.room?.name || ""}
                         />
-                        <View className="h-px bg-gray-200" />
+                        <View className="h-px bg-gray-200"/>
 
                         <InfoRow
                             icon="time-outline"
@@ -179,7 +184,7 @@ const LostItemDetailPage = () => {
                             paddingVertical: 4,
                             borderRadius: 20,
                             shadowColor: '#000',
-                            shadowOffset: { width: 0, height: 2 },
+                            shadowOffset: {width: 0, height: 2},
                             shadowOpacity: 0.05,
                             shadowRadius: 6,
                         }}
@@ -189,14 +194,14 @@ const LostItemDetailPage = () => {
                             label="Contact Name"
                             value={post?.user?.name || "Not provided"}
                         />
-                        <View className="h-px bg-gray-200" />
+                        <View className="h-px bg-gray-200"/>
 
                         <InfoRow
                             icon="mail-outline"
                             label="Email Address"
-                            value={post?.user?.phone|| "Not provided"}
+                            value={post?.user?.email || "Not provided"}
                         />
-                        <View className="h-px bg-gray-200" />
+                        <View className="h-px bg-gray-200"/>
 
                         <InfoRow
                             icon="call-outline"
@@ -206,21 +211,23 @@ const LostItemDetailPage = () => {
                     </GlassView>
                 </View>
 
-                {/* Action Button */}
-                <View className="mt-3">
-                    <View
-                        className="bg-[#5250e1] py-4 rounded-full items-center"
-                        style={{
-                            shadowColor: '#5250e1',
-                            shadowOffset: { width: 0, height: 4 },
-                            shadowOpacity: 0.3,
-                            shadowRadius: 8,
-                            elevation: 5,
-                        }}
-                    >
-                        <Text className="text-white text-lg font-bold">Contact Owner</Text>
+                <TouchableOpacity onPress={() => post && handleContactOwner(post)}>
+
+                    <View className="mt-3">
+                        <View
+                            className="bg-[#5250e1] py-4 rounded-full items-center"
+                            style={{
+                                shadowColor: '#5250e1',
+                                shadowOffset: {width: 0, height: 4},
+                                shadowOpacity: 0.3,
+                                shadowRadius: 8,
+                                elevation: 5,
+                            }}
+                        >
+                            <Text className="text-white text-lg font-bold">Contact Owner</Text>
+                        </View>
                     </View>
-                </View>
+                </TouchableOpacity>
             </View>
         </ScrollView>
     );
